@@ -7,9 +7,9 @@ on:
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     permissions:
       contents: write
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,3 +32,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/.vuepress/dist
           publish_branch: gh-pages  # 部署到 gh-pages 分支
+          force:true
