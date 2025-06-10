@@ -4,7 +4,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 
 export default {
   // 站点基本配置
-  base: '/',///Healerwy.github.io/
+  base: '/',//Healerwy.github.io/
   lang: 'zh-CN',
   title: '技术文档网站',
   description: '基于 VuePress v2 的技术文档',
@@ -26,7 +26,7 @@ export default {
           text: '指南',
           children: [
             '/guide/introduction',
-            // '/guide/installation',
+            '/guide/browser',
             // '/guide/quick-start'
           ]
         }
@@ -36,8 +36,8 @@ export default {
           text: '参考',
           children: [
             '/reference/api',
-            '/reference/config',
-            '/reference/components'
+            // '/reference/config',
+            // '/reference/components'
           ]
         }
       ]
