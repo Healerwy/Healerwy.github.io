@@ -27,7 +27,7 @@ export default {
           children: [
             '/guide/introduction',
             '/guide/browser',
-            // '/guide/quick-start'
+            '/guide/webpack'
           ]
         }
       ],

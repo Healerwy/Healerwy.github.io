@@ -5,6 +5,7 @@ export const routes = Object.fromEntries([
   ["/guide/browser.html", { loader: () => import(/* webpackChunkName: "guide_browser.html" */"D:/2025code/vuePress-demo/vuepress-document/Healerwy.github.io/docs/.vuepress/.temp/pages/guide/browser.html.js"), meta: {"title":"浏览器知识"} }],
   ["/guide/introduction.html", { loader: () => import(/* webpackChunkName: "guide_introduction.html" */"D:/2025code/vuePress-demo/vuepress-document/Healerwy.github.io/docs/.vuepress/.temp/pages/guide/introduction.html.js"), meta: {"title":"介绍"} }],
   ["/guide/javascript.html", { loader: () => import(/* webpackChunkName: "guide_javascript.html" */"D:/2025code/vuePress-demo/vuepress-document/Healerwy.github.io/docs/.vuepress/.temp/pages/guide/javascript.html.js"), meta: {"title":"JavaScript知识"} }],
+  ["/guide/webpack.html", { loader: () => import(/* webpackChunkName: "guide_webpack.html" */"D:/2025code/vuePress-demo/vuepress-document/Healerwy.github.io/docs/.vuepress/.temp/pages/guide/webpack.html.js"), meta: {"title":"Webpack知识"} }],
   ["/reference/api.html", { loader: () => import(/* webpackChunkName: "reference_api.html" */"D:/2025code/vuePress-demo/vuepress-document/Healerwy.github.io/docs/.vuepress/.temp/pages/reference/api.html.js"), meta: {"title":"欢迎来到我们的 API 文档！"} }],
   ["/404.html", { loader: () => import(/* webpackChunkName: "404.html" */"D:/2025code/vuePress-demo/vuepress-document/Healerwy.github.io/docs/.vuepress/.temp/pages/404.html.js"), meta: {"title":""} }],
 ]);
