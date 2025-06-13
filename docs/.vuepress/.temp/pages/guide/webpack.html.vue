@@ -51,11 +51,15 @@
 <li>nosources-source-map：不包含源代码，只包含行信息，可以保护源代码。</li>
 </ol>
 <h2 id="自动刷新" tabindex="-1"><a class="header-anchor" href="#自动刷新"><span>自动刷新</span></a></h2>
-<pre><code>1.模块热替换：HMR（Hot Module Replacement）在应用运行过程中替换、添加或删除模块，而无需重新加载整个页面。Webpack Dev Server 默认支持 HMR，只需在配置文件中启用即可。
-- 样式文件的热更新看起来开箱即用（style模块自行处理了）
-- js文件的热更新需要配置（注：通过脚手架创建的项目内部都继承了HMR方案）
-2.自动刷新：当文件发生变化时，自动刷新整个页面。Webpack Dev Server 默认支持自动刷新，只需在配置文件中设置 `open: true` 即可。
-</code></pre>
+<ol>
+<li>模块热替换：HMR（Hot Module Replacement）在应用运行过程中替换、添加或删除模块，而无需重新加载整个页面。Webpack Dev Server 默认支持 HMR，只需在配置文件中启用即可。
+<ul>
+<li>样式文件的热更新看起来开箱即用（style模块自行处理了）</li>
+<li>js文件的热更新需要配置（注：通过脚手架创建的项目内部都继承了HMR方案）</li>
+</ul>
+</li>
+<li>自动刷新：当文件发生变化时，自动刷新整个页面。Webpack Dev Server 默认支持自动刷新，只需在配置文件中设置 <code v-pre>open: true</code> 即可。</li>
+</ol>
 <h2 id="生产环境优化" tabindex="-1"><a class="header-anchor" href="#生产环境优化"><span>生产环境优化</span></a></h2>
 <p>生产环境注重运行效率，开发环境注重开发效率。开发环境下配置的一些热部署、自动刷新等开发友好功能在生产环境下是不需要的，甚至是有害的。因此，我们需要在开发环境和生产环境之间进行配置分离。</p>
 <ol>

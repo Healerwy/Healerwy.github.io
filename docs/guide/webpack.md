@@ -44,10 +44,10 @@ Source Map 是一种映射技术，可以将编译后的代码映射回源代码
 
 ## 自动刷新
 
-    1.模块热替换：HMR（Hot Module Replacement）在应用运行过程中替换、添加或删除模块，而无需重新加载整个页面。Webpack Dev Server 默认支持 HMR，只需在配置文件中启用即可。
+1. 模块热替换：HMR（Hot Module Replacement）在应用运行过程中替换、添加或删除模块，而无需重新加载整个页面。Webpack Dev Server 默认支持 HMR，只需在配置文件中启用即可。
     - 样式文件的热更新看起来开箱即用（style模块自行处理了）
     - js文件的热更新需要配置（注：通过脚手架创建的项目内部都继承了HMR方案）
-    2.自动刷新：当文件发生变化时，自动刷新整个页面。Webpack Dev Server 默认支持自动刷新，只需在配置文件中设置 `open: true` 即可。
+2. 自动刷新：当文件发生变化时，自动刷新整个页面。Webpack Dev Server 默认支持自动刷新，只需在配置文件中设置 `open: true` 即可。
 
 
 ## 生产环境优化
