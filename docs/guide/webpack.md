@@ -61,3 +61,25 @@ Source Map 是一种映射技术，可以将编译后的代码映射回源代码
 DefinePlugin 是 Webpack 提供的一个内置插件，用于在编译时创建全局常量。在代码中，可以通过 `process.env.NODE_ENV` 来访问这个常量。
 
 ## Tree Shaking
+
+Tree Shaking 是一种通过静态分析代码，去除未使用的代码（Dead Code）的技术。Webpack 默认支持 Tree Shaking，只需在配置文件中设置 `mode: 'production'` 即可。Tree Shaking的前提是ES Modules
+
+1. usedExports：在 ES6 模块中，通过 `export` 导出的变量、函数、类等，只有被使用到才会被打包进最终的代码中。
+2. minimize：在 Webpack 配置中，通过 `mode: 'production'` 可以启用代码压缩和 Tree Shaking 功能。
+3. concatenateModules：将所有模块合并到一个文件中，减少模块数量，提高打包效率。
+
+## sideEffects
+    sideEffects一般用于NPM包标记是否有副作用
+
+## 代码分割（Code Splitting）
+
+1. 多入口打包
+2. 提取公共模块
+``optimization: {
+                // minimize: true,
+                splitChunks: {
+                    chunks: 'all',
+                }
+            },``
+3. 动态导入:动态导入的模块会被自动分包
+4. 魔法注释

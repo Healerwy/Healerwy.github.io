@@ -65,6 +65,23 @@
 <h2 id="defineplugin" tabindex="-1"><a class="header-anchor" href="#defineplugin"><span>definePlugin</span></a></h2>
 <p>DefinePlugin 是 Webpack 提供的一个内置插件，用于在编译时创建全局常量。在代码中，可以通过 <code v-pre>process.env.NODE_ENV</code> 来访问这个常量。</p>
 <h2 id="tree-shaking" tabindex="-1"><a class="header-anchor" href="#tree-shaking"><span>Tree Shaking</span></a></h2>
+<p>Tree Shaking 是一种通过静态分析代码，去除未使用的代码（Dead Code）的技术。Webpack 默认支持 Tree Shaking，只需在配置文件中设置 <code v-pre>mode: 'production'</code> 即可。Tree Shaking的前提是ES Modules</p>
+<ol>
+<li>usedExports：在 ES6 模块中，通过 <code v-pre>export</code> 导出的变量、函数、类等，只有被使用到才会被打包进最终的代码中。</li>
+<li>minimize：在 Webpack 配置中，通过 <code v-pre>mode: 'production'</code> 可以启用代码压缩和 Tree Shaking 功能。</li>
+<li>concatenateModules：将所有模块合并到一个文件中，减少模块数量，提高打包效率。</li>
+</ol>
+<h2 id="sideeffects" tabindex="-1"><a class="header-anchor" href="#sideeffects"><span>sideEffects</span></a></h2>
+<pre><code>sideEffects一般用于NPM包标记是否有副作用
+</code></pre>
+<h2 id="代码分割-code-splitting" tabindex="-1"><a class="header-anchor" href="#代码分割-code-splitting"><span>代码分割（Code Splitting）</span></a></h2>
+<ol>
+<li>多入口打包</li>
+<li>提取公共模块
+<code v-pre>optimization: {              // minimize: true,              splitChunks: {                  chunks: 'all',              }          },</code></li>
+<li>动态导入:动态导入的模块会被自动分包</li>
+<li>魔法注释</li>
+</ol>
 </div></template>
 
 
