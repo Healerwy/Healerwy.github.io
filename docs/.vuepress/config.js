@@ -27,6 +27,7 @@ export default {
           children: [
             '/guide/introduction',
             '/guide/browser',
+            '/guide/javascript',
             '/guide/webpack',
             '/guide/vite'
           ]
