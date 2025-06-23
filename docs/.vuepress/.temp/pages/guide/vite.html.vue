@@ -33,6 +33,34 @@
 <p>很多同学会存在误区：认为官网中使用对应yarn create构建项目的过程也是vite在做的事情
 实际上：create-vite内置了vite</p>
 <h2 id="vite启动项目初体验" tabindex="-1"><a class="header-anchor" href="#vite启动项目初体验"><span>Vite启动项目初体验</span></a></h2>
+<p>开箱即用：你不需要做任何额外的配置就可以使用vite来帮你处理构建工作</p>
+<p>在默认情况下，我们的ESModule去导入资源的时候，要么是绝对路径，要么是相对路径</p>
+<h2 id="vite预加载" tabindex="-1"><a class="header-anchor" href="#vite预加载"><span>Vite预加载</span></a></h2>
+<p><strong>依赖预构建：</strong> 首先vite会找到对应的依赖，然后调用esbuild（对js语法进行处理的一个库，基于Go语言，速度极快），将其他规范的代码转换成EsModule规范，然后放到当前目录下的node_modules/.vite/deps,同时对EsModule规范的各个模块进行统一集成。</p>
+<p>他解决了3个问题：</p>
+<ol>
+<li>不同的第三方包会有不同的导出格式（这个是vite没法约束人家的事情）</li>
+<li>对路径的处理上可以直接使用./vite/deps，方便路径重写</li>
+<li>叫做网络多包传输的性能问题（也是原生EsModule规范不敢支持node_modules的原因之一）,有了依赖预构建以后，无论他有多少的额外export和import，vite都会尽可能的将他们进行集成最后只生成一个或者几个模块</li>
+</ol>
+<h2 id="vite环境变量配置" tabindex="-1"><a class="header-anchor" href="#vite环境变量配置"><span>Vite环境变量配置</span></a></h2>
+<p>环境变量：会根据当前的代码环境产生值的变化的变量就叫做环境变量</p>
+<p>在vite中的环境变量处理：
+vite内置了dotenv这个第三方库，dotenv会自动读取.env文件，并解析这个文件中的对应环境变量，并将其注入到process对象下（但是vite考虑到和其他配置的一些冲突问题，他不会直接注入到process对象下）</p>
+<p>process.cwd方法：返回当前node进程的工作目录</p>
+<ul>
+<li><strong>.env</strong>：所有环境都需要用到的环境变量</li>
+<li><strong>.env.development</strong>： 开发环境需要用到的环境变量(默认情况下vite将我们开发环境取名为development)</li>
+<li><strong>.env.production</strong>：生产环境需要用到的环境变量(默认情况下vite将我们生产环境取名为production)</li>
+</ul>
+<p>yarn dev --mode development 会将mode设置为development传递进来</p>
+<p>当我们调用loadenv的时候，他会做如下几件事:</p>
+<ol>
+<li>直接找到.env文件不解释，并解析其中的环境变量，并放进一个对象里</li>
+<li>会将传进来的mode这个变量的值进行拼接：<code v-pre>.env.development</code>，并根据我们提供的目录去取对应的配置文件并进行解析，并放进一个对象</li>
+</ol>
+<p>vite做了一个拦截，他为了防止我们将隐私性的变量直接送进import.meta.env中，所以他做了一层拦截，如果你的环境变量不是以VITE开头的，他就不会帮你注入到客户端中去。</p>
+<p>补充一个小知识：为什么vite.config.js可以书写成ESModule的形式，这是因为vite他在读取这个vite.config.js的时候会率先node去解析文件语法，如果发现你是ESModule的语法规范，它就会直接将你的ESModule规范进行替换变成commonJs规范。</p>
 </div></template>
 
 
