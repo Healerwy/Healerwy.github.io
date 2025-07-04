@@ -73,3 +73,6 @@ yarn dev --mode development 会将mode设置为development传递进来
 vite做了一个拦截，他为了防止我们将隐私性的变量直接送进import.meta.env中，所以他做了一层拦截，如果你的环境变量不是以VITE开头的，他就不会帮你注入到客户端中去。
 
 补充一个小知识：为什么vite.config.js可以书写成ESModule的形式，这是因为vite他在读取这个vite.config.js的时候会率先node去解析文件语法，如果发现你是ESModule的语法规范，它就会直接将你的ESModule规范进行替换变成commonJs规范。
+
+## vite开发服务器搭建原理以及为什么vite可以让浏览器识别.vue文件解析
+

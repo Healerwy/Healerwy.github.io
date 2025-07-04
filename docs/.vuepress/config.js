@@ -6,7 +6,7 @@ export default {
   // 站点基本配置
   base: '/',//Healerwy.github.io/
   lang: 'zh-CN',
-  title: '技术文档网站',
+  title: 'Yue技术文档网站',
   description: '基于 VuePress v2 的技术文档',
   
   // 主题配置
