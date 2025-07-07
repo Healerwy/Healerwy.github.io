@@ -94,9 +94,158 @@
 <li>Object是通过new Function产生的实例</li>
 </ul>
 <h4 id="_2、执行上下文与执行上下文栈" tabindex="-1"><a class="header-anchor" href="#_2、执行上下文与执行上下文栈"><span>2、执行上下文与执行上下文栈</span></a></h4>
+<ol>
+<li>变量提升与函数提升</li>
+</ol>
+<ul>
+<li>变量声明提升：通过var定义（声明）的变量，在定义语句之前就可以访问到，值为undefined</li>
+<li>函数声明提升：通过function声明的函数，在之前就可以直接调用，值为函数体</li>
+</ul>
+<ol start="2">
+<li>执行上下文</li>
+</ol>
+<ul>
+<li>全局执行上下文：在执行全局代码前将window确定为全局执行上下文</li>
+<li>对全局数据进行预处理
+<ul>
+<li>var定义的全局变量：undefined，添加为window属性</li>
+<li>function声明的全局函数：赋值（fun），添加为window的方法</li>
+<li>this：赋值（window）</li>
+</ul>
+</li>
+<li>开始执行全局代码</li>
+</ul>
+<ol start="3">
+<li>函数执行上下文</li>
+</ol>
+<ul>
+<li>在调用函数，准备执行函数体之前，创建对应的函数执行上下文(虚拟的，存在于栈中)</li>
+<li>对局部数据进行预处理
+<ul>
+<li>形参变量：赋值（实参），添加为执行上下文的属性</li>
+<li>arguments：赋值（实参列表），添加为执行上下文的属性</li>
+<li>var定义的局部变量：undefined，添加为执行上下文的属性</li>
+<li>函数声明：赋值（fun），添加为执行上下文的方法</li>
+<li>var定义的局部变量：undefined，添加为执行上下文的属性</li>
+<li>function声明的函数：赋值（fun），添加为执行上下文的方法</li>
+<li>this：赋值（调用函数的对象）</li>
+</ul>
+</li>
+<li>开始执行函数体代码</li>
+</ul>
+<ol start="4">
+<li>执行上下文栈</li>
+</ol>
+<ul>
+<li>在全局代码执行前，JS引擎就会创建一个栈来存储管理所有的执行上下文对象</li>
+<li>在全局执行上下文（window）确定后，将其添加到栈中（压栈）</li>
+<li>在函数执行上下文创建后，将其添加到栈中（压栈）</li>
+<li>在当前函数执行完后，将栈顶的对象移除（出栈）</li>
+<li>当所有的代码执行完毕后，栈中只剩下window</li>
+<li>
 <h4 id="_3、作用域与作用域链" tabindex="-1"><a class="header-anchor" href="#_3、作用域与作用域链"><span>3、作用域与作用域链</span></a></h4>
+<ol>
+<li>作用域与执行上下文的区别</li>
+</ol>
+<ul>
+<li>全局作用域之外，每个函数都会创建自己的作用域，作用域在函数定义时就已经确定了。而不是在函数调用时</li>
+<li>全局执行上下文环境是在全局代码执行前创建，而执行上下文环境是在函数执行时创建</li>
+<li>函数执行上下文环境是在调用函数时，函数体代码执行之前创建</li>
+</ul>
 <h4 id="_4、闭包" tabindex="-1"><a class="header-anchor" href="#_4、闭包"><span>4、闭包</span></a></h4>
-<h3 id="三、面向对象高级" tabindex="-1"><a class="header-anchor" href="#三、面向对象高级"><span>三、面向对象高级</span></a></h3>
+<ol>
+<li>闭包理解</li>
+</ol>
+<ul>
+<li>如何产生闭包？
+<ul>
+<li>当一个嵌套的内部（子）函数引用了嵌套的外部（父）函数的变量(函数)时，就产生了闭包</li>
+</ul>
+</li>
+<li>闭包是什么？
+<ul>
+<li>理解一：闭包是嵌套的内部函数（绝大部分人）</li>
+<li>理解二：包含被引用变量（函数）的对象（极少数人）</li>
+</ul>
+</li>
+<li>产生闭包的条件？
+<ul>
+<li>函数嵌套</li>
+<li>内部函数引用了外部函数的数据（变量/函数）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">  function fn1(){</span>
+<span class="line">      var a = 2;</span>
+<span class="line">      var b = 'abc';</span>
+<span class="line">      function fn2(){ //执行函数定义就会产生闭包（不用调用内部函数）</span>
+<span class="line">          console.log(a);</span>
+<span class="line">      }</span>
+<span class="line">  }</span>
+<span class="line">  fn1();</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2">
+<li>常见的闭包</li>
+</ol>
+<ul>
+<li>将函数作为另一个函数的返回值</li>
+</ul>
+<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">function fn1() {</span>
+<span class="line">    var a = 2</span>
+<span class="line">    function fn2() {</span>
+<span class="line">        a++</span>
+<span class="line">        console.log(a)</span>
+<span class="line">    }</span>
+<span class="line">    return fn2</span>
+<span class="line">}</span>
+<span class="line">var f = fn1()</span>
+<span class="line">f() // 3</span>
+<span class="line">f() // 4</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>将函数作为实参传递给另一个函数调用</li>
+</ul>
+<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">  function showDelay(msg,time){</span>
+<span class="line">      setTimeout(function(){</span>
+<span class="line">          console.log(msg);</span>
+<span class="line">      },time);</span>
+<span class="line">  }</span>
+<span class="line">  showDelay('hello world',2000);</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="3">
+<li>闭包的作用</li>
+</ol>
+<ul>
+<li>使用函数内部的变量在函数执行完后，仍然存活在内存中（延长了局部变量的生命周期）</li>
+<li>让函数外部可以操作（读写）到函数内部的局部变量（变量私有化）</li>
+<li>问题：</li>
+<li>函数执行完后，函数内部声明的局部变量是否还存在？答：一般是不存在，存在于闭包中的变量才可能存在</li>
+<li>在函数外部能直接访问函数内部的局部变量吗？答：不能，但我们可以通过闭包让外部操作它</li>
+</ul>
+<ol start="4">
+<li>闭包的生命周期</li>
+</ol>
+<ul>
+<li>产生：在嵌套内部函数定义执行完时就产生了（不是在调用时）</li>
+<li>死亡：在嵌套的内部函数成为垃圾对象时</li>
+</ul>
+<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">  function fn1() {</span>
+<span class="line">      //此时闭包就已经产生了（函数提升，内部函数对象已经创建了）</span>
+<span class="line">      var a = 2</span>
+<span class="line">      function fn2() {</span>
+<span class="line">          a++</span>
+<span class="line">          console.log(a)</span>
+<span class="line">      }</span>
+<span class="line">      return fn2</span>
+<span class="line">  }</span>
+<span class="line">  var f = fn1()</span>
+<span class="line">  f() //3</span>
+<span class="line">  f() //4</span>
+<span class="line">  f = null //闭包死亡（包含闭包的函数对象成为垃圾对象）</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="三、面向对象高级" tabindex="-1"><a class="header-anchor" href="#三、面向对象高级"><span>三、面向对象高级</span></a></h3>
 <h3 id="四、线程机制与事件机制" tabindex="-1"><a class="header-anchor" href="#四、线程机制与事件机制"><span>四、线程机制与事件机制</span></a></h3>
 <h2 id="常见问题" tabindex="-1"><a class="header-anchor" href="#常见问题"><span>常见问题</span></a></h2>
 <h3 id="一、使用-const-定义函数和直接用-function-声明有什么区别" tabindex="-1"><a class="header-anchor" href="#一、使用-const-定义函数和直接用-function-声明有什么区别"><span>一、使用 const 定义函数和直接用 function 声明有什么区别？</span></a></h3>
