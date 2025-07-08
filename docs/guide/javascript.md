@@ -159,7 +159,113 @@ f() // 4
   f() //4
   f = null //闭包死亡（包含闭包的函数对象成为垃圾对象）
 ```
+  5. 闭包的应用
+   - 定义JS模块
+     - 具有特定功能的js文件
+     - 将所有的数据和功能都封装在一个函数内部（私有的）
+     - 只向外暴露一个包含n个方法的对象或函数
+     - 模块的使用者，只需要通过模块暴露的对象调用方法来实现对应的功能
+  6. 闭包的缺点及解决
+   - 缺点：函数执行完后，函数内的局部变量没有释放，占用内存时间会变长，容易造成内存泄漏
+   - 解决：及时释放，将不需要的变量置为null
+   - 内存溢出：
+      - 一种程序运行出现的错误
+      - 当程序运行需要的内存超过了剩余的内存时，就会发生内存溢出
+   - 内存泄漏
+      - 占用的内存没有及时释放
+      - 内存泄漏积累多了就容易导致内存溢出
+      - 常见的内存泄漏：
+        - 意外的全局变量
+        - 没有被清理的计时器或回调函数
+        - 闭包
   ### 三、面向对象高级
+  1. 对象创建模式
+   - 方式一：Object构造函数模式
+      - 套路：先创建空Object对象，再动态添加属性/方法
+      - 适用场景：起始时不确定对象内部数据
+      - 问题：语句太多
+```
+var p = new Object()
+p.name = "John"
+p.age = 30
+p.setName = function(name) {
+    this.name = name
+}
+```
+   - 方式二：对象字面量{}
+      - 套路：使用{}创建对象，同时指定属性/方法
+      - 适用场景：起始时对象内部数据是确定的
+      - 问题：如果创建多个对象，会有重复代码
+```
+  var p ={
+      name:"p",
+      age:12,
+      setName:function(name){
+          this.name=name;
+      }
+  }
+  p.setName("p2");
+```
+   - 方式三：工厂模式
+      - 套路：通过工厂函数动态创建对象并返回
+      - 适用场景：需要创建多个对象
+      - 对象没有一个具体的类型，都是Object类型
+```
+  function createPerson(name, age) {
+      var obj = {
+          name: name,
+          age: age,
+          setName:function (name) {
+              this.name = name;
+          }
+      }
+      return obj;
+  }
+  var p1 = createPerson('张三', 20);
+  var p2 = createPerson('李四', 30);
+```
+  - 方式四：自定义构造函数模式
+      - 套路：自定义构造函数，通过new创建对象实例
+      - 适用场景：需要创建多个类型确定的对象
+      - 问题：每个对象都有相同的数据（方法），浪费内存
+```
+  function Person(name,age){
+      this.name=name;
+      this.age=age;
+      this.setName=function(name){
+          this.name=name;
+      }
+  }
+  var p1=new Person("张三",18);
+  p1.setName("李四");
+  console.log(p1 instanceof Person);//true
+
+  function Student(name,price){
+      this.name=name;
+      this.price=price;
+  }
+  var s = new Student("张三",1000);
+  console.log(s instanceof Student);//true
+```
+  - 方式五：构造函数+原型的组合模式
+      - 套路：自定义构造函数，属性定义在构造函数中，方法定义在原型对象中
+      - 适用场景：需要创建多个类型确定的对象
+```
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+Person.prototype.setName = function(name) {
+    this.name = name;
+}
+var p1 = new Person("张三",18);
+var p2 = new Person("李四",20);
+```
+  2. 继承模式
+    - 方式一：原型链继承
+    - 方式二：借用构造函数继承
+    - 方式三：组合继承
+    
   ### 四、线程机制与事件机制
 ## 常见问题
 ### 一、使用 const 定义函数和直接用 function 声明有什么区别？

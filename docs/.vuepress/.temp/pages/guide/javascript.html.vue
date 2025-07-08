@@ -245,7 +245,156 @@
 <span class="line">  f() //4</span>
 <span class="line">  f = null //闭包死亡（包含闭包的函数对象成为垃圾对象）</span>
 <span class="line"></span></code></pre>
-<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="三、面向对象高级" tabindex="-1"><a class="header-anchor" href="#三、面向对象高级"><span>三、面向对象高级</span></a></h3>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="5">
+<li>闭包的应用</li>
+</ol>
+<ul>
+<li>定义JS模块
+<ul>
+<li>具有特定功能的js文件</li>
+<li>将所有的数据和功能都封装在一个函数内部（私有的）</li>
+<li>只向外暴露一个包含n个方法的对象或函数</li>
+<li>模块的使用者，只需要通过模块暴露的对象调用方法来实现对应的功能</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>闭包的缺点及解决</li>
+</ol>
+<ul>
+<li>缺点：函数执行完后，函数内的局部变量没有释放，占用内存时间会变长，容易造成内存泄漏</li>
+<li>解决：及时释放，将不需要的变量置为null</li>
+<li>内存溢出：
+<ul>
+<li>一种程序运行出现的错误</li>
+<li>当程序运行需要的内存超过了剩余的内存时，就会发生内存溢出</li>
+</ul>
+</li>
+<li>内存泄漏
+<ul>
+<li>占用的内存没有及时释放</li>
+<li>内存泄漏积累多了就容易导致内存溢出</li>
+<li>常见的内存泄漏：
+<ul>
+<li>意外的全局变量</li>
+<li>没有被清理的计时器或回调函数</li>
+<li>闭包</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="三、面向对象高级" tabindex="-1"><a class="header-anchor" href="#三、面向对象高级"><span>三、面向对象高级</span></a></h3>
+<ol>
+<li>对象创建模式</li>
+</ol>
+<ul>
+<li>方式一：Object构造函数模式
+<ul>
+<li>套路：先创建空Object对象，再动态添加属性/方法</li>
+<li>适用场景：起始时不确定对象内部数据</li>
+<li>问题：语句太多</li>
+</ul>
+</li>
+</ul>
+<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">var p = new Object()</span>
+<span class="line">p.name = "John"</span>
+<span class="line">p.age = 30</span>
+<span class="line">p.setName = function(name) {</span>
+<span class="line">    this.name = name</span>
+<span class="line">}</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>方式二：对象字面量{}
+<ul>
+<li>套路：使用{}创建对象，同时指定属性/方法</li>
+<li>适用场景：起始时对象内部数据是确定的</li>
+<li>问题：如果创建多个对象，会有重复代码</li>
+</ul>
+</li>
+</ul>
+<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">  var p ={</span>
+<span class="line">      name:"p",</span>
+<span class="line">      age:12,</span>
+<span class="line">      setName:function(name){</span>
+<span class="line">          this.name=name;</span>
+<span class="line">      }</span>
+<span class="line">  }</span>
+<span class="line">  p.setName("p2");</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>方式三：工厂模式
+<ul>
+<li>套路：通过工厂函数动态创建对象并返回</li>
+<li>适用场景：需要创建多个对象</li>
+<li>对象没有一个具体的类型，都是Object类型</li>
+</ul>
+</li>
+</ul>
+<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">  function createPerson(name, age) {</span>
+<span class="line">      var obj = {</span>
+<span class="line">          name: name,</span>
+<span class="line">          age: age,</span>
+<span class="line">          setName:function (name) {</span>
+<span class="line">              this.name = name;</span>
+<span class="line">          }</span>
+<span class="line">      }</span>
+<span class="line">      return obj;</span>
+<span class="line">  }</span>
+<span class="line">  var p1 = createPerson('张三', 20);</span>
+<span class="line">  var p2 = createPerson('李四', 30);</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>方式四：自定义构造函数模式
+<ul>
+<li>套路：自定义构造函数，通过new创建对象实例</li>
+<li>适用场景：需要创建多个类型确定的对象</li>
+<li>问题：每个对象都有相同的数据（方法），浪费内存</li>
+</ul>
+</li>
+</ul>
+<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">  function Person(name,age){</span>
+<span class="line">      this.name=name;</span>
+<span class="line">      this.age=age;</span>
+<span class="line">      this.setName=function(name){</span>
+<span class="line">          this.name=name;</span>
+<span class="line">      }</span>
+<span class="line">  }</span>
+<span class="line">  var p1=new Person("张三",18);</span>
+<span class="line">  p1.setName("李四");</span>
+<span class="line">  console.log(p1 instanceof Person);//true</span>
+<span class="line"></span>
+<span class="line">  function Student(name,price){</span>
+<span class="line">      this.name=name;</span>
+<span class="line">      this.price=price;</span>
+<span class="line">  }</span>
+<span class="line">  var s = new Student("张三",1000);</span>
+<span class="line">  console.log(s instanceof Student);//true</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>方式五：构造函数+原型的组合模式
+<ul>
+<li>套路：自定义构造函数，属性定义在构造函数中，方法定义在原型对象中</li>
+<li>适用场景：需要创建多个类型确定的对象</li>
+</ul>
+</li>
+</ul>
+<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">function Person(name, age) {</span>
+<span class="line">    this.name = name;</span>
+<span class="line">    this.age = age;</span>
+<span class="line">}</span>
+<span class="line">Person.prototype.setName = function(name) {</span>
+<span class="line">    this.name = name;</span>
+<span class="line">}</span>
+<span class="line">var p1 = new Person("张三",18);</span>
+<span class="line">var p2 = new Person("李四",20);</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2">
+<li>继承模式
+- 方式一：原型链继承
+- 方式二：借用构造函数继承
+- 方式三：组合继承</li>
+</ol>
 <h3 id="四、线程机制与事件机制" tabindex="-1"><a class="header-anchor" href="#四、线程机制与事件机制"><span>四、线程机制与事件机制</span></a></h3>
 <h2 id="常见问题" tabindex="-1"><a class="header-anchor" href="#常见问题"><span>常见问题</span></a></h2>
 <h3 id="一、使用-const-定义函数和直接用-function-声明有什么区别" tabindex="-1"><a class="header-anchor" href="#一、使用-const-定义函数和直接用-function-声明有什么区别"><span>一、使用 const 定义函数和直接用 function 声明有什么区别？</span></a></h3>
