@@ -263,10 +263,49 @@ var p2 = new Person("李四",20);
 ```
   2. 继承模式
     - 方式一：原型链继承
+      - 定义父类型构造函数，给父类型的原型添加方法。定义子类型的构造函数，创建父类型的对象赋值给子类型的原型。将子类型原型的构造属性设置为子类型，给子类型原型添加方法。创建子类型的对象：可以调用父类型的方法。（关键：子类型的原型为父类型的一个实例对象）
+```
+function Supper(){
+    this.supProp = 'Supper property'
+}
+Supper.prototype.showSubpperProp = function(){
+    console.log(this.supProp)
+}
+//子类型
+function Sub(){
+    this.subProp = 'Sub property'
+}
+Sub.prototype = new Supper()
+Sub.prototype.showSubProp = function(){
+    console.log(this.subProp)
+}
+var sub = new Sub()
+sub.showSubpperProp()
+```
     - 方式二：借用构造函数继承
     - 方式三：组合继承
-    
+
   ### 四、线程机制与事件机制
+  1. 进程与线程
+  2. 浏览器内核
+  3. 定时器
+    - 定时器真是定时执行的吗？
+      - 定时器并不能保证真正定时执行
+      - 一般会延迟一丁点（可以接受），也有可能延迟很长时间（不能接受）
+    - 定时器回调函数是在分线程执行的吗？
+      - 在主线程执行的，js是单线程的
+    - 定时器是如何实现的？
+      - 事件循环模型
+  4. js是单线程的
+    - 如何证明js执行时单线程的？
+      - setTimeout()的回调函数是在主线程执行的
+      - 定时器回调函数只有在运行栈中的代码执行完毕后才有可能执行
+    - 为什么js要用单线程模式，而不用多线程模式？
+      - JavaScript的单线程，与它的用途有关。作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，这时浏览器应该以哪个线程为准？
+  5. 事件循环模型
+  6. Web Workers测试
+  7. Web Workers应用
+
 ## 常见问题
 ### 一、使用 const 定义函数和直接用 function 声明有什么区别？
 
