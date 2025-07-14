@@ -74,7 +74,9 @@ vite做了一个拦截，他为了防止我们将隐私性的变量直接送进i
 
 补充一个小知识：为什么vite.config.js可以书写成ESModule的形式，这是因为vite他在读取这个vite.config.js的时候会率先node去解析文件语法，如果发现你是ESModule的语法规范，它就会直接将你的ESModule规范进行替换变成commonJs规范。
 
-## vite开发服务器搭建原理以及为什么vite可以让浏览器识别.vue文件解析
+## vite开发服务器搭建原理
+
+以及为什么vite可以让浏览器识别.vue文件解析
 
 **搭建服务端项目**
 1. 指令
