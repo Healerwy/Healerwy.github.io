@@ -390,13 +390,15 @@
 <span class="line">var p2 = new Person("李四",20);</span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2">
-<li>继承模式
-- 方式一：原型链继承
+<li>继承模式</li>
+</ol>
+<ul>
+<li>方式一：原型链继承
 <ul>
 <li>定义父类型构造函数，给父类型的原型添加方法。定义子类型的构造函数，创建父类型的对象赋值给子类型的原型。将子类型原型的构造属性设置为子类型，给子类型原型添加方法。创建子类型的对象：可以调用父类型的方法。（关键：子类型的原型为父类型的一个实例对象）</li>
 </ul>
 </li>
-</ol>
+</ul>
 <div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">function Supper(){</span>
 <span class="line">    this.supProp = 'Supper property'</span>
 <span class="line">}</span>
@@ -414,38 +416,50 @@
 <span class="line">var sub = new Sub()</span>
 <span class="line">sub.showSubpperProp()</span>
 <span class="line"></span></code></pre>
-<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>- 方式二：借用构造函数继承
-- 方式三：组合继承
-</code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>方式二：借用构造函数继承</li>
+<li>方式三：组合继承</li>
+</ul>
 <h3 id="四、线程机制与事件机制" tabindex="-1"><a class="header-anchor" href="#四、线程机制与事件机制"><span>四、线程机制与事件机制</span></a></h3>
 <ol>
 <li>进程与线程</li>
 <li>浏览器内核</li>
-<li>定时器
-- 定时器真是定时执行的吗？
+<li>定时器</li>
+</ol>
+<ul>
+<li>定时器真是定时执行的吗？
 <ul>
 <li>定时器并不能保证真正定时执行</li>
 <li>一般会延迟一丁点（可以接受），也有可能延迟很长时间（不能接受）</li>
 </ul>
 </li>
-</ol>
-<pre><code>- 定时器回调函数是在分线程执行的吗？
-  - 在主线程执行的，js是单线程的
-- 定时器是如何实现的？
-  - 事件循环模型
-</code></pre>
+<li>定时器回调函数是在分线程执行的吗？
+<ul>
+<li>在主线程执行的，js是单线程的</li>
+</ul>
+</li>
+<li>定时器是如何实现的？
+<ul>
+<li>事件循环模型</li>
+</ul>
+</li>
+</ul>
 <ol start="4">
-<li>js是单线程的
-- 如何证明js执行时单线程的？
+<li>js是单线程的</li>
+</ol>
+<ul>
+<li>如何证明js执行时单线程的？
 <ul>
 <li>setTimeout()的回调函数是在主线程执行的</li>
 <li>定时器回调函数只有在运行栈中的代码执行完毕后才有可能执行</li>
+<li>为什么js要用单线程模式，而不用多线程模式？
+<ul>
+<li>JavaScript的单线程，与它的用途有关。作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，这时浏览器应该以哪个线程为准？</li>
 </ul>
 </li>
-</ol>
-<pre><code>- 为什么js要用单线程模式，而不用多线程模式？
-  - JavaScript的单线程，与它的用途有关。作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，这时浏览器应该以哪个线程为准？
-</code></pre>
+</ul>
+</li>
+</ul>
 <ol start="5">
 <li>事件循环模型</li>
 <li>Web Workers测试</li>

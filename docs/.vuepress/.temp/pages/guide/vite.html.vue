@@ -62,6 +62,32 @@ vite内置了dotenv这个第三方库，dotenv会自动读取.env文件，并解
 <p>vite做了一个拦截，他为了防止我们将隐私性的变量直接送进import.meta.env中，所以他做了一层拦截，如果你的环境变量不是以VITE开头的，他就不会帮你注入到客户端中去。</p>
 <p>补充一个小知识：为什么vite.config.js可以书写成ESModule的形式，这是因为vite他在读取这个vite.config.js的时候会率先node去解析文件语法，如果发现你是ESModule的语法规范，它就会直接将你的ESModule规范进行替换变成commonJs规范。</p>
 <h2 id="vite开发服务器搭建原理以及为什么vite可以让浏览器识别-vue文件解析" tabindex="-1"><a class="header-anchor" href="#vite开发服务器搭建原理以及为什么vite可以让浏览器识别-vue文件解析"><span>vite开发服务器搭建原理以及为什么vite可以让浏览器识别.vue文件解析</span></a></h2>
+<p><strong>搭建服务端项目</strong></p>
+<ol>
+<li>指令</li>
+</ol>
+<ul>
+<li>yarn init
+-yarn add koa:node端的一个框架</li>
+</ul>
+<h2 id="在vite中处理css" tabindex="-1"><a class="header-anchor" href="#在vite中处理css"><span>在vite中处理css</span></a></h2>
+<p><strong>vite天生就支持对css文件的直接处理</strong></p>
+<ol>
+<li>vite在读取到main.js中引用到了Index.css</li>
+<li>直接去使用fs模块去读取index.css中文件内容</li>
+<li>直接创建一个style标签，将index.css中的文件内容直接copy进style标签里</li>
+<li>将style标签直接插入到index.html的head标签中</li>
+<li>将该css文件中的内容直接替换为js脚本（方便热更新或者css模块化），同时设置Content-Type为js 从而让浏览器以js脚本的形式来执行该css后缀的文件</li>
+</ol>
+<p><strong>cssmodule解决不同css文件类名样式重复的问题</strong></p>
+<ol>
+<li>module.css(module是一种约定，表示需要开启css模块化)</li>
+<li>他会将你的所有类名进行一定规则的替换（将footer替换成_footer_i22st_1）</li>
+<li>同时创建一个映射对象{footer: '_footer_i22st_1'}</li>
+<li>将替换后的内容塞进style标签里然后放入到head标签中(能够读到index.html的文件内容)</li>
+<li>将componentA.module.css内容进行全部抹除，替换成js脚本</li>
+<li>将创建的映射对象在脚本中进行默认导出</li>
+</ol>
 </div></template>
 
 
