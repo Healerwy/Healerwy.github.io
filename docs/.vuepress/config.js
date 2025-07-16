@@ -15,6 +15,7 @@ export default {
     navbar: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/introduction' },
+      { text: '面试题', link: '/interview/introduction' },
       { text: '参考', link: '/reference/api' },
       { text: 'GitHub', link: 'https://github.com' }
     ],
@@ -30,6 +31,14 @@ export default {
             '/guide/javascript',
             '/guide/webpack',
             '/guide/vite'
+          ]
+        }
+      ],
+      '/interview/': [
+        {
+          text: '面试题',
+          children: [
+            '/interview/introduction',
           ]
         }
       ],
