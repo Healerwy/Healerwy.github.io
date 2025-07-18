@@ -11,7 +11,7 @@
   #### 5、回调函数
   #### 6、IIFEL立即执行函数
   1. 作用：隐藏实现，不会污染全局命名空间，用它来编码js模块
-  ```
+  ```js
     (function(){
       var a = 1
       console.log(a)
@@ -101,7 +101,7 @@
   - 产生闭包的条件？
     - 函数嵌套
     - 内部函数引用了外部函数的数据（变量/函数）
-```
+```js
   function fn1(){
       var a = 2;
       var b = 'abc';
@@ -113,7 +113,7 @@
 ```
   2. 常见的闭包
   - 将函数作为另一个函数的返回值
-```
+```js
 function fn1() {
     var a = 2
     function fn2() {
@@ -127,7 +127,7 @@ f() // 3
 f() // 4
 ```
   - 将函数作为实参传递给另一个函数调用
-```
+```js
   function showDelay(msg,time){
       setTimeout(function(){
           console.log(msg);
@@ -144,7 +144,7 @@ f() // 4
   4. 闭包的生命周期
   - 产生：在嵌套内部函数定义执行完时就产生了（不是在调用时）
   - 死亡：在嵌套的内部函数成为垃圾对象时
-```
+```js
   function fn1() {
       //此时闭包就已经产生了（函数提升，内部函数对象已经创建了）
       var a = 2
@@ -184,7 +184,7 @@ f() // 4
       - 套路：先创建空Object对象，再动态添加属性/方法
       - 适用场景：起始时不确定对象内部数据
       - 问题：语句太多
-```
+```js
 var p = new Object()
 p.name = "John"
 p.age = 30
@@ -196,7 +196,7 @@ p.setName = function(name) {
       - 套路：使用{}创建对象，同时指定属性/方法
       - 适用场景：起始时对象内部数据是确定的
       - 问题：如果创建多个对象，会有重复代码
-```
+```js
   var p ={
       name:"p",
       age:12,
@@ -210,7 +210,7 @@ p.setName = function(name) {
       - 套路：通过工厂函数动态创建对象并返回
       - 适用场景：需要创建多个对象
       - 对象没有一个具体的类型，都是Object类型
-```
+```js
   function createPerson(name, age) {
       var obj = {
           name: name,
@@ -228,7 +228,7 @@ p.setName = function(name) {
       - 套路：自定义构造函数，通过new创建对象实例
       - 适用场景：需要创建多个类型确定的对象
       - 问题：每个对象都有相同的数据（方法），浪费内存
-```
+```js
   function Person(name,age){
       this.name=name;
       this.age=age;
@@ -250,7 +250,7 @@ p.setName = function(name) {
   - 方式五：构造函数+原型的组合模式
       - 套路：自定义构造函数，属性定义在构造函数中，方法定义在原型对象中
       - 适用场景：需要创建多个类型确定的对象
-```
+```js
 function Person(name, age) {
     this.name = name;
     this.age = age;
@@ -264,7 +264,7 @@ var p2 = new Person("李四",20);
   2. 继承模式
   - 方式一：原型链继承
       - 定义父类型构造函数，给父类型的原型添加方法。定义子类型的构造函数，创建父类型的对象赋值给子类型的原型。将子类型原型的构造属性设置为子类型，给子类型原型添加方法。创建子类型的对象：可以调用父类型的方法。（关键：子类型的原型为父类型的一个实例对象）
-```
+```js
 function Supper(){
     this.supProp = 'Supper property'
 }
@@ -359,7 +359,7 @@ JavaScript 的数组原型上有很多实用的高阶函数，例如：map、fil
 在 JavaScript 中，普通函数和箭头函数处理动态参数（不定数量的参数）的方式存在显著差异，主要体现在 arguments 对象、剩余参数语法和上下文绑定上。以下是具体对比：
 1. arguments 对象的差异
 - 普通函数：拥有内置的 arguments 对象，它是一个类数组对象，包含了函数调用时传递的所有参数。
-```
+```js
 function sum() {
     let total = 0;
     for (let i = 0; i < arguments.length; i++) {
@@ -370,7 +370,7 @@ function sum() {
 console.log(sum(1, 2, 3)); // 输出 6
 ```
 - 箭头函数：没有自己的 arguments 对象，它会捕获外层函数的 arguments（如果存在）。
-```
+```js
 const sum = () => {
     // 尝试访问 arguments 会报错或引用外层作用域的 arguments
     console.log(arguments); // 报错：ReferenceError (如果没有外层函数)
@@ -379,14 +379,14 @@ sum(1, 2, 3);
 ```
 2. 剩余参数语法的差异
 - 普通函数：可以使用剩余参数语法（...args）来收集所有参数到一个数组中。
-```
+```js
 function sum(...args) {
   return args.reduce((acc, val) => acc + val, 0);
 }
 console.log(sum(1, 2, 3)); // 输出 6
 ```
 - 箭头函数：同样支持剩余参数语法，且是推荐的动态参数处理方式。 ...args 可以获取所有参数，args 是一个真正的数组，可以直接使用数组的方法。
-```
+```js
 const sum = (...args) => {
   return args.reduce((acc, val) => acc + val, 0);
 };
@@ -394,7 +394,7 @@ console.log(sum(1, 2, 3)); // 输出 6
 ```
 3. 上下文（this）绑定的差异
 - 普通函数：在普通函数中，this 是在调用时动态绑定的，取决于函数的调用方式。arguments 对象与当前函数的上下文（this）绑定。
-```
+```js
 function MyClass() {
     this.value = 10;
     setTimeout(function() {
@@ -404,7 +404,7 @@ function MyClass() {
 }
 ```
 - 箭头函数：箭头函数的 this 是在定义时绑定的，它不会根据调用上下文改变。没有自己的 this，arguments 会继承外层函数的上下文。
-```
+```js
 function MyClass() {
   this.value = 10;
   setTimeout(() => {

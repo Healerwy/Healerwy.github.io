@@ -75,11 +75,13 @@ Tree Shaking 是一种通过静态分析代码，去除未使用的代码（Dead
 
 1. 多入口打包
 2. 提取公共模块
-``optimization: {
-                // minimize: true,
-                splitChunks: {
-                    chunks: 'all',
-                }
-            },``
+```js
+optimization: {
+    // minimize: true,
+    splitChunks: {
+        chunks: 'all',
+    }
+},
+```
 3. 动态导入:动态导入的模块会被自动分包
 4. 魔法注释

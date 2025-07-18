@@ -14,10 +14,10 @@
 <ol>
 <li>作用：隐藏实现，不会污染全局命名空间，用它来编码js模块</li>
 </ol>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">  (function(){</span>
-<span class="line">    var a = 1</span>
-<span class="line">    console.log(a)</span>
-<span class="line">  })()</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line">  <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="line">    <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span></span>
+<span class="line">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span></span>
+<span class="line">  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="_7、函数中的this" tabindex="-1"><a class="header-anchor" href="#_7、函数中的this"><span>7、函数中的this</span></a></h4>
 <ol>
@@ -177,14 +177,14 @@
 </ul>
 </li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">  function fn1(){</span>
-<span class="line">      var a = 2;</span>
-<span class="line">      var b = 'abc';</span>
-<span class="line">      function fn2(){ //执行函数定义就会产生闭包（不用调用内部函数）</span>
-<span class="line">          console.log(a);</span>
-<span class="line">      }</span>
-<span class="line">  }</span>
-<span class="line">  fn1();</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line">  <span class="token keyword">function</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="line">      <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span></span>
+<span class="line">      <span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token string">'abc'</span><span class="token punctuation">;</span></span>
+<span class="line">      <span class="token keyword">function</span> <span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//执行函数定义就会产生闭包（不用调用内部函数）</span></span>
+<span class="line">          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">      <span class="token punctuation">}</span></span>
+<span class="line">  <span class="token punctuation">}</span></span>
+<span class="line">  <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2">
 <li>常见的闭包</li>
@@ -192,27 +192,27 @@
 <ul>
 <li>将函数作为另一个函数的返回值</li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">function fn1() {</span>
-<span class="line">    var a = 2</span>
-<span class="line">    function fn2() {</span>
-<span class="line">        a++</span>
-<span class="line">        console.log(a)</span>
-<span class="line">    }</span>
-<span class="line">    return fn2</span>
-<span class="line">}</span>
-<span class="line">var f = fn1()</span>
-<span class="line">f() // 3</span>
-<span class="line">f() // 4</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token keyword">function</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">2</span></span>
+<span class="line">    <span class="token keyword">function</span> <span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">        a<span class="token operator">++</span></span>
+<span class="line">        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span></span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line">    <span class="token keyword">return</span> fn2</span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"><span class="token keyword">var</span> f <span class="token operator">=</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 3</span></span>
+<span class="line"><span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 4</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
 <li>将函数作为实参传递给另一个函数调用</li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">  function showDelay(msg,time){</span>
-<span class="line">      setTimeout(function(){</span>
-<span class="line">          console.log(msg);</span>
-<span class="line">      },time);</span>
-<span class="line">  }</span>
-<span class="line">  showDelay('hello world',2000);</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line">  <span class="token keyword">function</span> <span class="token function">showDelay</span><span class="token punctuation">(</span><span class="token parameter">msg<span class="token punctuation">,</span>time</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="line">      <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="line">          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">      <span class="token punctuation">}</span><span class="token punctuation">,</span>time<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">  <span class="token punctuation">}</span></span>
+<span class="line">  <span class="token function">showDelay</span><span class="token punctuation">(</span><span class="token string">'hello world'</span><span class="token punctuation">,</span><span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="3">
 <li>闭包的作用</li>
@@ -231,19 +231,19 @@
 <li>产生：在嵌套内部函数定义执行完时就产生了（不是在调用时）</li>
 <li>死亡：在嵌套的内部函数成为垃圾对象时</li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">  function fn1() {</span>
-<span class="line">      //此时闭包就已经产生了（函数提升，内部函数对象已经创建了）</span>
-<span class="line">      var a = 2</span>
-<span class="line">      function fn2() {</span>
-<span class="line">          a++</span>
-<span class="line">          console.log(a)</span>
-<span class="line">      }</span>
-<span class="line">      return fn2</span>
-<span class="line">  }</span>
-<span class="line">  var f = fn1()</span>
-<span class="line">  f() //3</span>
-<span class="line">  f() //4</span>
-<span class="line">  f = null //闭包死亡（包含闭包的函数对象成为垃圾对象）</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line">  <span class="token keyword">function</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">      <span class="token comment">//此时闭包就已经产生了（函数提升，内部函数对象已经创建了）</span></span>
+<span class="line">      <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">2</span></span>
+<span class="line">      <span class="token keyword">function</span> <span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">          a<span class="token operator">++</span></span>
+<span class="line">          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span></span>
+<span class="line">      <span class="token punctuation">}</span></span>
+<span class="line">      <span class="token keyword">return</span> fn2</span>
+<span class="line">  <span class="token punctuation">}</span></span>
+<span class="line">  <span class="token keyword">var</span> f <span class="token operator">=</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="line">  <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//3</span></span>
+<span class="line">  <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//4</span></span>
+<span class="line">  f <span class="token operator">=</span> <span class="token keyword">null</span> <span class="token comment">//闭包死亡（包含闭包的函数对象成为垃圾对象）</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="5">
 <li>闭包的应用</li>
@@ -297,12 +297,12 @@
 </ul>
 </li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">var p = new Object()</span>
-<span class="line">p.name = "John"</span>
-<span class="line">p.age = 30</span>
-<span class="line">p.setName = function(name) {</span>
-<span class="line">    this.name = name</span>
-<span class="line">}</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token keyword">var</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="line">p<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"John"</span></span>
+<span class="line">p<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">30</span></span>
+<span class="line">p<span class="token punctuation">.</span><span class="token function-variable function">setName</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name</span>
+<span class="line"><span class="token punctuation">}</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
 <li>方式二：对象字面量{}
@@ -313,14 +313,14 @@
 </ul>
 </li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">  var p ={</span>
-<span class="line">      name:"p",</span>
-<span class="line">      age:12,</span>
-<span class="line">      setName:function(name){</span>
-<span class="line">          this.name=name;</span>
-<span class="line">      }</span>
-<span class="line">  }</span>
-<span class="line">  p.setName("p2");</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line">  <span class="token keyword">var</span> p <span class="token operator">=</span><span class="token punctuation">{</span></span>
+<span class="line">      <span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">"p"</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token literal-property property">age</span><span class="token operator">:</span><span class="token number">12</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token function-variable function">setName</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="line">          <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token operator">=</span>name<span class="token punctuation">;</span></span>
+<span class="line">      <span class="token punctuation">}</span></span>
+<span class="line">  <span class="token punctuation">}</span></span>
+<span class="line">  p<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"p2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
 <li>方式三：工厂模式
@@ -331,18 +331,18 @@
 </ul>
 </li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">  function createPerson(name, age) {</span>
-<span class="line">      var obj = {</span>
-<span class="line">          name: name,</span>
-<span class="line">          age: age,</span>
-<span class="line">          setName:function (name) {</span>
-<span class="line">              this.name = name;</span>
-<span class="line">          }</span>
-<span class="line">      }</span>
-<span class="line">      return obj;</span>
-<span class="line">  }</span>
-<span class="line">  var p1 = createPerson('张三', 20);</span>
-<span class="line">  var p2 = createPerson('李四', 30);</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line">  <span class="token keyword">function</span> <span class="token function">createPerson</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> age</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">      <span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span></span>
+<span class="line">          <span class="token literal-property property">name</span><span class="token operator">:</span> name<span class="token punctuation">,</span></span>
+<span class="line">          <span class="token literal-property property">age</span><span class="token operator">:</span> age<span class="token punctuation">,</span></span>
+<span class="line">          <span class="token function-variable function">setName</span><span class="token operator">:</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">              <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span></span>
+<span class="line">          <span class="token punctuation">}</span></span>
+<span class="line">      <span class="token punctuation">}</span></span>
+<span class="line">      <span class="token keyword">return</span> obj<span class="token punctuation">;</span></span>
+<span class="line">  <span class="token punctuation">}</span></span>
+<span class="line">  <span class="token keyword">var</span> p1 <span class="token operator">=</span> <span class="token function">createPerson</span><span class="token punctuation">(</span><span class="token string">'张三'</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">  <span class="token keyword">var</span> p2 <span class="token operator">=</span> <span class="token function">createPerson</span><span class="token punctuation">(</span><span class="token string">'李四'</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
 <li>方式四：自定义构造函数模式
@@ -353,23 +353,23 @@
 </ul>
 </li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">  function Person(name,age){</span>
-<span class="line">      this.name=name;</span>
-<span class="line">      this.age=age;</span>
-<span class="line">      this.setName=function(name){</span>
-<span class="line">          this.name=name;</span>
-<span class="line">      }</span>
-<span class="line">  }</span>
-<span class="line">  var p1=new Person("张三",18);</span>
-<span class="line">  p1.setName("李四");</span>
-<span class="line">  console.log(p1 instanceof Person);//true</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line">  <span class="token keyword">function</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span>age</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="line">      <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token operator">=</span>name<span class="token punctuation">;</span></span>
+<span class="line">      <span class="token keyword">this</span><span class="token punctuation">.</span>age<span class="token operator">=</span>age<span class="token punctuation">;</span></span>
+<span class="line">      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">setName</span><span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="line">          <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token operator">=</span>name<span class="token punctuation">;</span></span>
+<span class="line">      <span class="token punctuation">}</span></span>
+<span class="line">  <span class="token punctuation">}</span></span>
+<span class="line">  <span class="token keyword">var</span> p1<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">,</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">  p1<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"李四"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>p1 <span class="token keyword">instanceof</span> <span class="token class-name">Person</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//true</span></span>
 <span class="line"></span>
-<span class="line">  function Student(name,price){</span>
-<span class="line">      this.name=name;</span>
-<span class="line">      this.price=price;</span>
-<span class="line">  }</span>
-<span class="line">  var s = new Student("张三",1000);</span>
-<span class="line">  console.log(s instanceof Student);//true</span>
+<span class="line">  <span class="token keyword">function</span> <span class="token function">Student</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span>price</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="line">      <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token operator">=</span>name<span class="token punctuation">;</span></span>
+<span class="line">      <span class="token keyword">this</span><span class="token punctuation">.</span>price<span class="token operator">=</span>price<span class="token punctuation">;</span></span>
+<span class="line">  <span class="token punctuation">}</span></span>
+<span class="line">  <span class="token keyword">var</span> s <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">,</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>s <span class="token keyword">instanceof</span> <span class="token class-name">Student</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//true</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
 <li>方式五：构造函数+原型的组合模式
@@ -379,15 +379,15 @@
 </ul>
 </li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">function Person(name, age) {</span>
-<span class="line">    this.name = name;</span>
-<span class="line">    this.age = age;</span>
-<span class="line">}</span>
-<span class="line">Person.prototype.setName = function(name) {</span>
-<span class="line">    this.name = name;</span>
-<span class="line">}</span>
-<span class="line">var p1 = new Person("张三",18);</span>
-<span class="line">var p2 = new Person("李四",20);</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token keyword">function</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> age</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span></span>
+<span class="line">    <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"><span class="token class-name">Person</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">setName</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"><span class="token keyword">var</span> p1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">,</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"><span class="token keyword">var</span> p2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"李四"</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2">
 <li>继承模式</li>
@@ -399,22 +399,22 @@
 </ul>
 </li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">function Supper(){</span>
-<span class="line">    this.supProp = 'Supper property'</span>
-<span class="line">}</span>
-<span class="line">Supper.prototype.showSubpperProp = function(){</span>
-<span class="line">    console.log(this.supProp)</span>
-<span class="line">}</span>
-<span class="line">//子类型</span>
-<span class="line">function Sub(){</span>
-<span class="line">    this.subProp = 'Sub property'</span>
-<span class="line">}</span>
-<span class="line">Sub.prototype = new Supper()</span>
-<span class="line">Sub.prototype.showSubProp = function(){</span>
-<span class="line">    console.log(this.subProp)</span>
-<span class="line">}</span>
-<span class="line">var sub = new Sub()</span>
-<span class="line">sub.showSubpperProp()</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token keyword">function</span> <span class="token function">Supper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="line">    <span class="token keyword">this</span><span class="token punctuation">.</span>supProp <span class="token operator">=</span> <span class="token string">'Supper property'</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"><span class="token class-name">Supper</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">showSubpperProp</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="line">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>supProp<span class="token punctuation">)</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"><span class="token comment">//子类型</span></span>
+<span class="line"><span class="token keyword">function</span> <span class="token function">Sub</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="line">    <span class="token keyword">this</span><span class="token punctuation">.</span>subProp <span class="token operator">=</span> <span class="token string">'Sub property'</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"><span class="token class-name">Sub</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Supper</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token class-name">Sub</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">showSubProp</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="line">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>subProp<span class="token punctuation">)</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"><span class="token keyword">var</span> sub <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sub</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="line">sub<span class="token punctuation">.</span><span class="token function">showSubpperProp</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
 <li>方式二：借用构造函数继承</li>
@@ -532,23 +532,23 @@
 <ul>
 <li>普通函数：拥有内置的 arguments 对象，它是一个类数组对象，包含了函数调用时传递的所有参数。</li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">function sum() {</span>
-<span class="line">    let total = 0;</span>
-<span class="line">    for (let i = 0; i &lt; arguments.length; i++) {</span>
-<span class="line">        total += arguments[i];</span>
-<span class="line">    }</span>
-<span class="line">    return total;</span>
-<span class="line">}</span>
-<span class="line">console.log(sum(1, 2, 3)); // 输出 6</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token keyword">function</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token keyword">let</span> total <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arguments<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">        total <span class="token operator">+=</span> arguments<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line">    <span class="token keyword">return</span> total<span class="token punctuation">;</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出 6</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
 <li>箭头函数：没有自己的 arguments 对象，它会捕获外层函数的 arguments（如果存在）。</li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">const sum = () => {</span>
-<span class="line">    // 尝试访问 arguments 会报错或引用外层作用域的 arguments</span>
-<span class="line">    console.log(arguments); // 报错：ReferenceError (如果没有外层函数)</span>
-<span class="line">};</span>
-<span class="line">sum(1, 2, 3);</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token keyword">const</span> <span class="token function-variable function">sum</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token comment">// 尝试访问 arguments 会报错或引用外层作用域的 arguments</span></span>
+<span class="line">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 报错：ReferenceError (如果没有外层函数)</span></span>
+<span class="line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span>
+<span class="line"><span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2">
 <li>剩余参数语法的差异</li>
@@ -556,18 +556,18 @@
 <ul>
 <li>普通函数：可以使用剩余参数语法（...args）来收集所有参数到一个数组中。</li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">function sum(...args) {</span>
-<span class="line">  return args.reduce((acc, val) => acc + val, 0);</span>
-<span class="line">}</span>
-<span class="line">console.log(sum(1, 2, 3)); // 输出 6</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token keyword">function</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">  <span class="token keyword">return</span> args<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">acc<span class="token punctuation">,</span> val</span><span class="token punctuation">)</span> <span class="token operator">=></span> acc <span class="token operator">+</span> val<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出 6</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
 <li>箭头函数：同样支持剩余参数语法，且是推荐的动态参数处理方式。 ...args 可以获取所有参数，args 是一个真正的数组，可以直接使用数组的方法。</li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">const sum = (...args) => {</span>
-<span class="line">  return args.reduce((acc, val) => acc + val, 0);</span>
-<span class="line">};</span>
-<span class="line">console.log(sum(1, 2, 3)); // 输出 6</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token keyword">const</span> <span class="token function-variable function">sum</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span>
+<span class="line">  <span class="token keyword">return</span> args<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">acc<span class="token punctuation">,</span> val</span><span class="token punctuation">)</span> <span class="token operator">=></span> acc <span class="token operator">+</span> val<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span>
+<span class="line">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出 6</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="3">
 <li>上下文（this）绑定的差异</li>
@@ -575,23 +575,23 @@
 <ul>
 <li>普通函数：在普通函数中，this 是在调用时动态绑定的，取决于函数的调用方式。arguments 对象与当前函数的上下文（this）绑定。</li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">function MyClass() {</span>
-<span class="line">    this.value = 10;</span>
-<span class="line">    setTimeout(function() {</span>
-<span class="line">        console.log(this.arguments); // 指向 setTimeout 的参数</span>
-<span class="line">        console.log(this.value); // 输出 undefined（this 指向全局对象或 undefined）</span>
-<span class="line">    }, 100);</span>
-<span class="line">}</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token keyword">function</span> <span class="token function">MyClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 指向 setTimeout 的参数</span></span>
+<span class="line">        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出 undefined（this 指向全局对象或 undefined）</span></span>
+<span class="line">    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
 <li>箭头函数：箭头函数的 this 是在定义时绑定的，它不会根据调用上下文改变。没有自己的 this，arguments 会继承外层函数的上下文。</li>
 </ul>
-<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code class="language-text"><span class="line">function MyClass() {</span>
-<span class="line">  this.value = 10;</span>
-<span class="line">  setTimeout(() => {</span>
-<span class="line">    console.log(this.value); // 输出 10（继承 MyClass 的 this）</span>
-<span class="line">  }, 100);</span>
-<span class="line">}</span>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token keyword">function</span> <span class="token function">MyClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">  <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span></span>
+<span class="line">  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span>
+<span class="line">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出 10（继承 MyClass 的 this）</span></span>
+<span class="line">  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
 <span class="line"></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
 

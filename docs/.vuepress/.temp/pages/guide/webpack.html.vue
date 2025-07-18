@@ -81,8 +81,16 @@
 <h2 id="代码分割-code-splitting" tabindex="-1"><a class="header-anchor" href="#代码分割-code-splitting"><span>代码分割（Code Splitting）</span></a></h2>
 <ol>
 <li>多入口打包</li>
-<li>提取公共模块
-<code v-pre>optimization: {              // minimize: true,              splitChunks: {                  chunks: 'all',              }          },</code></li>
+<li>提取公共模块</li>
+</ol>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token literal-property property">optimization</span><span class="token operator">:</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token comment">// minimize: true,</span></span>
+<span class="line">    <span class="token literal-property property">splitChunks</span><span class="token operator">:</span> <span class="token punctuation">{</span></span>
+<span class="line">        <span class="token literal-property property">chunks</span><span class="token operator">:</span> <span class="token string">'all'</span><span class="token punctuation">,</span></span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"><span class="token punctuation">}</span><span class="token punctuation">,</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="3">
 <li>动态导入:动态导入的模块会被自动分包</li>
 <li>魔法注释</li>
 </ol>
