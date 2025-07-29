@@ -3,6 +3,7 @@ export const redirects = JSON.parse("{}")
 export const routes = Object.fromEntries([
   ["/", { loader: () => import(/* webpackChunkName: "index.html" */"D:/2025code/vuePress-demo/vuepress-document/Healerwy.github.io/docs/.vuepress/.temp/pages/index.html.js"), meta: {"title":""} }],
   ["/guide/browser.html", { loader: () => import(/* webpackChunkName: "guide_browser.html" */"D:/2025code/vuePress-demo/vuepress-document/Healerwy.github.io/docs/.vuepress/.temp/pages/guide/browser.html.js"), meta: {"title":"浏览器知识"} }],
+  ["/guide/electron.html", { loader: () => import(/* webpackChunkName: "guide_electron.html" */"D:/2025code/vuePress-demo/vuepress-document/Healerwy.github.io/docs/.vuepress/.temp/pages/guide/electron.html.js"), meta: {"title":"Electron知识"} }],
   ["/guide/introduction.html", { loader: () => import(/* webpackChunkName: "guide_introduction.html" */"D:/2025code/vuePress-demo/vuepress-document/Healerwy.github.io/docs/.vuepress/.temp/pages/guide/introduction.html.js"), meta: {"title":"介绍"} }],
   ["/guide/javascript.html", { loader: () => import(/* webpackChunkName: "guide_javascript.html" */"D:/2025code/vuePress-demo/vuepress-document/Healerwy.github.io/docs/.vuepress/.temp/pages/guide/javascript.html.js"), meta: {"title":"JavaScript知识"} }],
   ["/guide/vite.html", { loader: () => import(/* webpackChunkName: "guide_vite.html" */"D:/2025code/vuePress-demo/vuepress-document/Healerwy.github.io/docs/.vuepress/.temp/pages/guide/vite.html.js"), meta: {"title":"Vite知识"} }],

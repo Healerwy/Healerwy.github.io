@@ -1,0 +1,68 @@
+<template><div><h1 id="electron知识" tabindex="-1"><a class="header-anchor" href="#electron知识"><span>Electron知识</span></a></h1>
+<h2 id="创建项目" tabindex="-1"><a class="header-anchor" href="#创建项目"><span>创建项目</span></a></h2>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line">npm config <span class="token keyword">set</span> <span class="token constant">ELECTRON_MIRROR</span> <span class="token literal-property property">http</span><span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>npmmirror<span class="token punctuation">.</span>com<span class="token operator">/</span>mirrors<span class="token operator">/</span>electron<span class="token operator">/</span></span>
+<span class="line">npm init</span>
+<span class="line">npm install electron <span class="token operator">--</span>save<span class="token operator">-</span>dev <span class="token comment">//如果报错，使用npm install -g cnpm --registry=https://registry.npmmirror.com  cnpm install --save-dev electron</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="预加载脚本" tabindex="-1"><a class="header-anchor" href="#预加载脚本"><span>预加载脚本</span></a></h2>
+<p>Electron 的主进程是一个拥有着完全操作系统访问权限的 Node.js 环境。另一方面，出于安全原因，渲染进程默认跑在网页页面
+上，而并非 Node.js里。为了将 Electron 的不同类型的进程桥接在一起，我们需要使用被称为 预加载 的特殊脚本。</p>
+<h3 id="什么是预加载脚本" tabindex="-1"><a class="header-anchor" href="#什么是预加载脚本"><span>什么是预加载脚本？</span></a></h3>
+<p>预加载脚本是在渲染进程（网页）加载前执行的脚本，运行在 Node.js 环境与渲染进程之间的中间上下文 中:</p>
+<ul>
+<li>拥有有限的 Node.js 能力（可调用部分系统 API）；</li>
+<li>能直接访问渲染进程的 window 对象，可向网页注入全局变量或方法。
+它的核心作用是 在安全隔离的前提下，实现主进程（Main Process）与渲染进程（Renderer Process）的通信，或向网页暴露特定功能。</li>
+</ul>
+<h3 id="什么时候需要使用预加载脚本" tabindex="-1"><a class="header-anchor" href="#什么时候需要使用预加载脚本"><span>什么时候需要使用预加载脚本？</span></a></h3>
+<ol>
+<li>需要在渲染进程中使用 Node.js 能力，但又想保持安全隔离
+Electron 为了安全，默认在渲染进程中禁用了 Node.js（nodeIntegration: false）。若网页需要调用本地功能（如读取文件、获取系统信息），不能直接使用 require()，此时需通过预加载脚本作为 “桥梁”：</li>
+</ol>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token comment">// 预加载脚本（preload.js）</span></span>
+<span class="line"><span class="token keyword">const</span> <span class="token punctuation">{</span> contextBridge<span class="token punctuation">,</span> ipcRenderer <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'electron'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment">// 向网页暴露有限的 API（而非直接暴露 ipcRenderer）</span></span>
+<span class="line">contextBridge<span class="token punctuation">.</span><span class="token function">exposeInMainWorld</span><span class="token punctuation">(</span><span class="token string">'electronAPI'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span></span>
+<span class="line">  <span class="token function-variable function">readFile</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">path</span><span class="token punctuation">)</span> <span class="token operator">=></span> ipcRenderer<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span><span class="token string">'read-file'</span><span class="token punctuation">,</span> path<span class="token punctuation">)</span></span>
+<span class="line"><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>网页中即可安全使用：</p>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token comment">// 网页脚本</span></span>
+<span class="line">window<span class="token punctuation">.</span>electronAPI<span class="token punctuation">.</span><span class="token function">readFile</span><span class="token punctuation">(</span><span class="token string">'/data.txt'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">data</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2">
+<li>
+<p>需要在网页加载前执行初始化操作
+例如：设置全局变量、初始化通信监听、注入自定义样式等。</p>
+</li>
+<li>
+<p>遵循 Electron 安全最佳实践
+官方强烈建议禁用 nodeIntegration: true（避免网页脚本直接调用系统 API 导致安全风险），此时预加载脚本是安全扩展功能的首选方式。</p>
+</li>
+</ol>
+<h3 id="什么时候可以不使用" tabindex="-1"><a class="header-anchor" href="#什么时候可以不使用"><span>什么时候可以不使用</span></a></h3>
+<ol>
+<li>纯静态网页，无需与本地系统交互
+若你的应用只是简单包裹一个静态网页（如仅展示内容，无需调用文件、网络等系统能力），则不需要预加载脚本。</li>
+<li>开发调试阶段，临时开启 Node.js 集成
+调试时可临时设置 nodeIntegration: true 并关闭 contextIsolation（不推荐用于生产环境），此时渲染进程可直接使用 Node.js API，无需预加载脚本：</li>
+</ol>
+<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line"><span class="token comment">// 仅用于调试，生产环境禁用</span></span>
+<span class="line"><span class="token keyword">new</span> <span class="token class-name">BrowserWindow</span><span class="token punctuation">(</span><span class="token punctuation">{</span></span>
+<span class="line">  <span class="token literal-property property">webPreferences</span><span class="token operator">:</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token literal-property property">nodeIntegration</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span></span>
+<span class="line">    <span class="token literal-property property">contextIsolation</span><span class="token operator">:</span> <span class="token boolean">false</span></span>
+<span class="line">  <span class="token punctuation">}</span></span>
+<span class="line"><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="总结" tabindex="-1"><a class="header-anchor" href="#总结"><span>总结</span></a></h3>
+<ul>
+<li><strong>非必须，但强烈推荐使用：</strong> 尤其是生产环境的应用，预加载脚本是平衡功能扩展与安全性的最佳实践</li>
+<li><strong>核心场景：</strong> 当需要在网页中使用系统功能（如文件操作、主进程通信）时，必须通过预加载脚本实现（而非直接开启 nodeIntegration）。</li>
+<li><strong>简单场景：</strong> 纯展示型应用可省略预加载脚本，但仍建议保持默认的安全配置（禁用 Node.js 集成）。</li>
+</ul>
+<p><a href="https://www.electronjs.org/zh/docs/latest/tutorial/%E6%89%93%E5%8C%85%E6%95%99%E7%A8%8B" target="_blank" rel="noopener noreferrer">官方文档</a></p>
+</div></template>
+
+

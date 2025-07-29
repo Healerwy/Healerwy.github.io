@@ -30,7 +30,8 @@ export default {
             '/guide/browser',
             '/guide/javascript',
             '/guide/webpack',
-            '/guide/vite'
+            '/guide/vite',
+            '/guide/electron',
           ]
         }
       ],
