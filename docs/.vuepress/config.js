@@ -32,6 +32,7 @@ export default {
             '/guide/webpack',
             '/guide/vite',
             '/guide/electron',
+            '/guide/node',
           ]
         }
       ],
