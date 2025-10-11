@@ -27,6 +27,31 @@
 
 因为webpack支持多种模块化，他一开始必须要统一模块化代码，所以意味着他需要将所有的依赖全部读一遍。
 
+webpack的编译原理：AST抽象语法分析的工具，分析出你写的这个js文件有哪些导入和导出操作，构建工具是运行在服务端的
+```js
+//这一段代码最终回到浏览器里去运行
+const lodash = require("lodash")
+import Vue from "vue"
+```
+```js
+//webpack的一个转换结果
+const lodash = webpack_require("lodash")
+const Vue = webpack_require("vue")
+```
+```js
+(function(modules){
+    function webpack_require(){}
+    //入口是index.js
+    //通过webpack的配置文件得来的：webpack.config.js ./src/index.js
+    modules[entry](webpack_require);
+},({
+    "./src/index.js":(webpack_requie) => {
+        const lodash = webpack_require("lodash");
+        const Vue = webpack_require("vue")
+    }
+}))
+```
+
 ## vite脚手架和vite
   
 当我们敲下 yarn create vite
