@@ -1,5 +1,5 @@
-import comp from "D:/2025code/自主学习/学习文档网站/gitee-vuePress-demo/document/docs/.vuepress/.temp/pages/guide/electron.html.vue"
-const data = JSON.parse("{\"path\":\"/guide/electron.html\",\"title\":\"Electron知识\",\"lang\":\"zh-CN\",\"frontmatter\":{},\"git\":{\"updatedTime\":1761094244000,\"contributors\":[{\"name\":\"wangyue\",\"username\":\"\",\"email\":\"2421447099@qq.com\",\"commits\":1}],\"changelog\":[{\"hash\":\"598d682222de768c9c4a2434085145e01bc4c883\",\"time\":1761094244000,\"email\":\"2421447099@qq.com\",\"author\":\"wangyue\",\"message\":\"文档\"}]},\"filePathRelative\":\"guide/electron.md\"}")
+import comp from "D:/2025code/自主学习/学习文档网站/vuePress-demo/vuepress-document/Healerwy.github.io/docs/.vuepress/.temp/pages/guide/electron.html.vue"
+const data = JSON.parse("{\"path\":\"/guide/electron.html\",\"title\":\"Electron知识\",\"lang\":\"zh-CN\",\"frontmatter\":{},\"git\":{\"updatedTime\":1753773757000,\"contributors\":[{\"name\":\"wangyue\",\"username\":\"\",\"email\":\"2421447099@qq.com\",\"commits\":1}],\"changelog\":[{\"hash\":\"e6312f03d454571c0a7b53348899e6e40a5f7534\",\"time\":1753773757000,\"email\":\"2421447099@qq.com\",\"author\":\"wangyue\",\"message\":\"electron\"}]},\"filePathRelative\":\"guide/electron.md\"}")
 export { comp, data }
 
 if (import.meta.webpackHot) {

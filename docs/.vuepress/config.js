@@ -33,6 +33,7 @@ export default {
             '/guide/vite',
             '/guide/electron',
             '/guide/node',
+            '/guide/wei',
           ]
         }
       ],
