@@ -220,8 +220,11 @@ export default defineConfig({
         postcss:{
             plugins:[postcssPresetEnv()]
         }
-
-
+    },
+    resolve:{
+        alias:{//配置路径别名
+            "@":path.resolve(__dirname,"./src")
+        },
     }
 })
 ```
